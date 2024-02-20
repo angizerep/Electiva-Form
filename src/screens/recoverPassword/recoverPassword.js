@@ -5,30 +5,46 @@ import PasswordInput from '../../components/form/PasswordInput/index.js';
 import Button from '../../components/form/Button';
 import { useForm } from "react-hook-form";
 
+
+
 export default function RecoverPasswordScreen({ navigation }) {
   
-  const { control, handleSubmit } = useForm();
+  const { control, handleSubmit, errors  } = useForm();
+  const validatePasswordMatch = (value) => {
+    if (value !== watch("password1")) {
+      return "Las contraseñas no coinciden.";
+    } else {
+      return true; // La validación es exitosa
+    }
+  };
+  
   // useEffect(()=>{
   //   console.log
   // })
 
-  const Submit = () => {
-    console.log("evento submit")
+
+  
+  function Submit() {
+    console.log("evento submit");
   }
 
   return (
+
+    
     <View style={styles.container}>
       <Image 
         style={styles.imagen}
         source={{uri:'https://jgstudiotesting.000webhostapp.com/src/img/login.jfif'}}
       />
-      <Text style={styles.titulo}>Recover</Text>
-      <Text style={styles.subtitulos}>Recover Pass to start using the app</Text>
+      <Text style={styles.titulo}>Recuperación de Contraseña</Text>
+      
       <View style={styles.form}>
 
-      <View style={{marginTop:10}}>
+
+
+      <View style={{marginTop:20}}>
         <CustomTextInput
-          placeholder="username@email.com"
+          placeholder="Introduce tu correo aquí."
           autoComplete="email"
           autoCapitalize="none"
           control={control}
@@ -41,13 +57,39 @@ export default function RecoverPasswordScreen({ navigation }) {
             },
           }}
         />
-      </View>
+      </View>   
 
-      <View style={{marginTop: 60}}>
+
+    
+
+
+   <View style={{marginTop: 70}}>
         <PasswordInput
           control={control}
-          name="password"
-          placeholder="Password"
+          name="password1"
+          placeholder="Nueva contraseña."
+          autoComplete="password"
+          rules={{
+            required: "Complete la contraseña.",
+            minLength: {
+              value: 5,
+              message: "La contraseña debe tener mínimo 5 carácteres.",
+            },
+            maxLength: {
+              value: 20,
+              message: "La contraseña no puede pasar de los 20 carácteres.",
+            },            
+          }}
+        />
+      </View>
+
+
+
+      <View style={{marginTop: 80}}>
+        <PasswordInput
+          control={control}
+          name="password2"
+          placeholder="Repita la nueva contraseña."
           autoComplete="password"
           rules={{
             required: "Complete la contraseña.",
@@ -59,19 +101,21 @@ export default function RecoverPasswordScreen({ navigation }) {
               value: 20,
               message: "La contraseña no puede pasar de los 20 carácteres.",
             },
+            validate: validatePasswordMatch
           }}
         />
-      </View>
+      </View>   
 
 
         <Button 
           onPress={handleSubmit(Submit)}
+                   
           mode="filled"
-        >Entrar</Button>
+        >Enviar</Button>
         <Button 
-          onPress={() => navigation.navigate("signUp")}
+          onPress={() => navigation.navigate("signIn")}
           mode="flat">
-          Regístrate
+          Registrate
         </Button>
       </View>
     </View>

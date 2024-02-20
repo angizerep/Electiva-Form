@@ -10,13 +10,13 @@ export default StyleSheet.create({
   titulo: {
     alignSelf: "flex-start",
     marginLeft: 40,
-    fontSize: 80,
+    fontSize: 40,
     fontWeight: "bold"
   },
   subtitulos: {
     alignSelf: "flex-start",
     marginLeft: 40,
-    transform: [{translateY: -20}],
+    transform: [{translateY: 10}],
     color: "grey"
   },
   imagen: {
