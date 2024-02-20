@@ -69,9 +69,9 @@ export default function RecoverPasswordScreen({ navigation }) {
           mode="filled"
         >Entrar</Button>
         <Button 
-          onPress={() => navigation.navigate("signIn")}
+          onPress={() => navigation.navigate("signUp")}
           mode="flat">
-          Registrate
+          Regístrate
         </Button>
       </View>
     </View>

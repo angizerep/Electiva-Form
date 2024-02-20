@@ -74,9 +74,9 @@ export default function LoginScreen({ navigation }) {
           Recuperar Contraseña
         </Button>
         <Button 
-          onPress={() => navigation.navigate("signIn")}
+          onPress={() => navigation.navigate("signUp")}
           mode="flat">
-          Registrate
+          Regístrate
         </Button>
       </View>
     </View>
